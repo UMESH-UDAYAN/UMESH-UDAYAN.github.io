@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.sub-blog-home {
+    padding: 2rem;
+    text-align: center;
+    color: rgb(255, 111, 0);
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 4rem;
+}
+
+.sub-blog-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 4rem;
+}
+
+.Exploiting-Broadcast-Receiver {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.sub-blog-lablinkmain {
+    margin-top: 1.5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.sub-blog-lablink {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border-radius: 40px;
+    font-size: 1.4rem;
+    color: white;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 0.2rem solid rgb(255, 111, 0);
+    transition: all 0.3s ease;
+}
+
+.sub-blog-lablink:hover {
+    background-color: rgb(255, 111, 0);
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgb(255, 111, 0);
+}
+
+.Exploiting-Broadcast-Receiver h4 {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    color: rgb(153, 152, 152);
+    opacity: 0.7;
+    text-align: left;
+}
+
+.blog-main-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.blog-main-image {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.sub-blog-text {
+    margin-top: 2rem;
+    text-align: left;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: white;
+}
+.sub-blog-text h3{
+    color: rgb(255, 111, 0);
+}
+
+.sub-blog-links{
+    color: #ffcc00;
+}
+.sub-blog-links:hover{
+    color: rgb(255, 111, 0);
+}
+
+.sub-blog-command{
+    font-style:italic;
+    font-size: 1.4rem;
+    font-size: smaller;
+    color: rgb(239, 168, 76);
+}
+
+.sub-blog-blogimages{
+    text-align: center;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    transform: scale(0.7);
+    transform-origin: center;
+}
+ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+ul ul {
+    list-style-type: circle;
+    padding-left: 1.5rem;
+}
+
+pre[class*="language-"] {
+    background-color: #1e1e1e;
+    color: #f4f2f2;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow: auto;
+}
+
+code[class*="language-"] {
+    background-color: transparent;
+}
+
+
+
+
+
+@media(max-width:995px){
+    .sub-blog-blogimages{
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+    .sub-blog-title {
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        padding-bottom: 4rem;
+    }
+}
