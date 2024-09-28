@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog.css">
+    <title>PORFOLIO</title>
+    <script src="https://kit.fontawesome.com/70277638d1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <a href="../" class="logo">UMESH</a>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav id="nav-menu">
+            <a href="../" class="active">Home</a>
+            <a href="../blog.html">Blog</a>
+            <a href="#about">About</a>
+            <a href="#">Experience</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="sub-blog-home" id="blog-home">
+            <div class="sub-blog-container">
+                <h1 class="sub-blog-title">Exploiting Broadcast Receiver <span>-MobileHackingLabs</span></h1>
+                <div class="Exploiting-Broadcast-Receiver">
+                    <div class="sub-blog-lablinkmain">
+                        <a class="sub-blog-lablink" href="https://www.mobilehackinglab.com/course/lab-iot-connect">(Lab - IOT Connect)</a>
+                    </div>
+                    <h4>September 18, 2024</h4>
+                    <div class="blog-main-image">
+                        <img src="../img/blog/blog1/blog1.png">
+                    </div>
+                    <div class="sub-blog-text">
+                        <p>
+                            Hello everyone,<br><br>
+                            In this blog, I'll guide you through a challenge I encountered, focused on exploiting a Broadcast Receiver vulnerability. The challenge comes from a platform called <a class="sub-blog-links" href="https://www.mobilehackinglab.com/">MobileHackingLabs</a>, which is excellent for honing your mobile pentesting skills. Let’s dive in!
+                            <br><br><h3>Broadcast Receiver</h3><br>A Broadcast Receiver enables applications to send and receive broadcast messages from other apps and system-wide events. Examples of such events include incoming calls, low battery warnings, and system boot-ups. As a core component of Android, when a broadcast is sent, the system automatically directs it to apps that have registered to receive that specific type of broadcast.
+                            <br><br>For the Lab Set up, I suggest you to go through this <a class="sub-blog-links" href="https://www.youtube.com/watch?v=uQ8SVWO0zEI">video</a>.<br><br>
+                            Or else you can download the APK to your machine and install it on Genymotion emulator using the <a class="sub-blog-command">adb install</a> command.
+                            <br><br>You can find the apk at this location.<br>
+                            /data/app/~~xmdJ0JND-kNFOyhwRs7d9A==/com.mobilehackinglab.iotconnect-Sk0lr_scm-PnnXYTkPXT3w==/<br>
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog2.png">
+                            After opening the app. You will get an interface like this,
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog3.png">
+                            Upon launching the application, you are presented with two options: Login or Sign Up. Choose "Sign Up" to create a new user account. After logging in with your new credentials, you'll see two buttons: "Setup" and "Master Switch." Clicking on the "Setup" button displays several devices that can be turned on or off. However, certain devices, like the A/C and Speaker, cannot be activated since you are logged in as a guest user.
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog4.png">
+                            When you click on the "Master Switch," you're prompted to enter a 3-digit PIN. This button allows you to activate all devices with a single click, but it's only accessible to users with a privileged account.
+                            <br><br>
+                            Open the APK in jadx on your Kali Linux machine and navigate to the AndroidManifest file. Look for the receiver component, and you'll find a Broadcast Receiver named MasterReceiver, which is marked as exported with android:exported="true" but lacks any permission restrictions. This makes it vulnerable to unauthorized access.
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog5.png">
+                            Further analysis using the Text Search feature in JADX revealed a class named <a class="sub-blog-command">`CommunicationManager`</a> when searching for <a class="sub-blog-command">`MasterReceiver`</a>.
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog6.png">
+                            Inside the <a class="sub-blog-command">`onReceive`</a> method, the code first checks if the action of the received intent matches the string <a class="sub-blog-command">`"MASTER_ON"`</a>. If this condition is met, it proceeds to extract an integer extra from the intent using the key <a class="sub-blog-command">`"key"`</a>. If the <a class="sub-blog-command">`context2`</a> parameter is not null and the extracted key passes the <a class="sub-blog-command">`check_key`</a> method from the <a class="sub-blog-command">`Checker`</a> class (indicating a valid PIN), the <a class="sub-blog-command">`turnOnAllDevices`</a> method from the <a class="sub-blog-command">`CommunicationManager`</a> is invoked to turn on all connected devices. A toast message is then displayed, stating <a class="sub-blog-command">*"All devices are turned on."*</a> However, if the <a class="sub-blog-command">`check_key`</a> method returns false (indicating an incorrect PIN), a different toast message appears, saying <a class="sub-blog-command">*"Wrong PIN!!"*</a>. 
+                            <br><br>This <a class="sub-blog-command">`BroadcastReceiver`</a> listens for the <a class="sub-blog-command">`"MASTER_ON"`</a> action and, without additional permission restrictions, could be vulnerable to unauthorized broadcasts if exposed externally.
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog7.png">
+                            <ul>
+                                <li>check_key(int key):
+                                    <ul>
+                                        <li>
+                                            This method receives an integer key (likely a PIN entered by the user).
+                                            It calls decrypt to try and decrypt the encrypted string ds using the key.
+                                            If the decryption is successful and matches the string "master_on", the key is valid (returns true). If it doesn’t match, it returns false.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>decrypt(String ds2, int key):
+                                    <ul>
+                                        <li>
+                                            This method performs the actual decryption. It takes the encrypted string ds2 and an integer key.
+                                        </li>
+                                        <li>
+                                            The key is used to generate a secret key for the AES decryption process.
+                                        </li>
+                                        <li>
+                                            If the decryption is successful, it returns the decrypted string.
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul><br>
+                            When an incorrect PIN is entered, a "Wrong Pin" message is returned. However, if the correct PIN is obtained, the Master Switch can be used to activate all devices without requiring access to the Master account.
+                            <br>
+                            <pre><code class="language-python">
+                                from Crypto.Cipher import AES
+                                from Crypto.Util.Padding import unpad
+                                from base64 import b64decode
+                                # Encoded string and target valueencoded_ds = "OSnaALIWUkpOziVAMycaZQ=="
+                                target_string = "master_on"
+                                # Iterate through all possible keys
+                                for key_int in range(1, 1000001):
+                                    try:
+                                        # Decrypt the encoded string with the current key
+                                        decoded_ds = b64decode(encoded_ds)
+                                        key_bytes = str(key_int).encode("utf-8").ljust(16, b'\0')[:16]
+                                        cipher = AES.new(key_bytes, AES.MODE_ECB)
+                                        decrypted = unpad(cipher.decrypt(decoded_ds), AES.block_size).decode("utf-8")
+                                        # Check if the decrypted value matches the target
+                                        if decrypted == target_string:
+                                            print(f"Found key: {key_int}")
+                                            break
+                                    except Exception as e:
+                                        Continue
+                                else:
+                                    print("Key not found within limit.")
+                            </code></pre>
+                            Copy this code, create a python file and paste this.
+                            <br><a class="sub-blog-command">└─$ nano brutepin.py</a>
+                            <br><br>
+                            Run this code.
+                            <br><a class="sub-blog-command">└─$ python brutepin.py</a>
+                            <br><br>If there is any error occur try to run the below code.
+                            <br><p style="font-style: italic;">Make sure you have the required pycryptodome library installed. You can install it using pip:</p>
+                            <a class="sub-blog-command">└─$ pip install pycryptodome</a>
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog8.png">
+                            Next, open the terminal and run the following `adb` command using the correct PIN that was just brute-forced.
+                            <br><a class="sub-blog-command">└─$ adb shell am broadcast -a MASTER_ON --ei key 345</a>
+                            <img class="sub-blog-blogimages" src="../img/blog/blog1/blog9.png">
+                            You should see a message indicating <a class="sub-blog-command">"ALL Devices are Turned On"</a>. After that, click on the Setup button and check that all devices are activated.
+                            <br><br><h3 style="font-style: italic;">THANK YOU...</h3>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-content">
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/umesh-u-4573b3291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/UMESH-UDAYAN"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/UmeshUDYN?t=u_yGkwAMtOMYY1j4sjmbOg&s=35"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/um_e_sh____?igsh=MXY2cGt5MWY1bmcwNQ=="><i class="fa-brands fa-square-instagram"></i></a>
+            </div>
+            <div class="magneticbtn">
+                <a href="../index.html#about" class="btn">
+                    <span>ABOUT</span>
+                    <div class="hovercolor"></div>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="../magnet.js"></script>
