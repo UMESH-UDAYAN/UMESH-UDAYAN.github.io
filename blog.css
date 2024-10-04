@@ -264,7 +264,10 @@ code[class*="language-"] {
         margin-top: 1rem;
     }
     .blog-image-container{
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
+    }
+    .blog-image-container.blog2 {
+        padding-bottom: 11rem;
     }
 
 
