@@ -457,6 +457,10 @@ section.mail-contact{
         margin-left: 0; 
         margin-top: 5%;
     }
+    .magneticbtn .btn > span{
+        font-size: 1.3rem;
+        font-weight: 200;
+    }
     .magneticbtn .mailbtn .btn > span{
         font-size: 1rem;
         font-weight: 200;
