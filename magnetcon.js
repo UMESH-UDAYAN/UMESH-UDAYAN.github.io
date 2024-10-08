@@ -25,7 +25,7 @@ function magneticButton(element) {
 
                     gsap.to(children, {
                         x: centerX / 6, // Smaller movement for the child element
-                        y: centerY / 6,
+                        y: centerY / 9,
                         rotate: distance / 80, // Subtle rotation
                         duration: 0.4,
                         ease: "power2.out",
