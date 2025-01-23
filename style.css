@@ -282,7 +282,7 @@ span{
 .typing-text span::after{
     content: "";
     background-color: transparent;
-    position: absolute;
+    position: relative;
     width: calc(100% + 8px);
     height: 100%;
     border-left: 3px solid black;
