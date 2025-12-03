@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>PORTFOLIO</title>
+    <script src="https://kit.fontawesome.com/70277638d1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="./" class="logo">UMESH</a>
+        <div class="hamburger" id="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav id="nav-menu">
+            <a href="./" class="active">Home</a>
+            <a href="./blog">Blog</a>
+            <a href="#about">About</a>
+            <a href="#">Experience</a>
+            <a href="./contact">Contact</a>
+        </nav>
+    </header>
+
+<!---------------------------------------------------------->    
+    <section class="home">
+        <div class="image-container">
+            <div class="home-image">
+                <img src="img/Moon1.png" alt="">
+            </div>
+            <div class="my-image">
+                <img src="img/myimage.png" alt="">
+            </div>
+        </div>
+        <div class="home-content">
+            <h1>Hi, I'm <span class="open-sans">UMESH</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>A cybersecurity enthusiast, I'm eager to share the wonders of this dynamic field. Throughout my journey, I've explored web application and Android penetration testing, as well as programming and networking, constantly working to unravel the intricacies of digital security.</p>
+            <p>Throughout my experiences, I've encountered numerous challenges that have provided invaluable insights and deepened my understanding of cybersecurity. What excites me most is the ongoing learning process; in this ever-evolving field, there's always something new to uncover—whether it's a novel vulnerability, an emerging technology, or an innovative defense mechanism. I am committed to staying at the forefront of cybersecurity, eagerly seeking out opportunities to expand my knowledge and expertise.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/umesh-udayan"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/UMESH-UDAYAN"><i class="fa-brands fa-github"></i></a>
+                <a href="https://x.com/UmeshUDYN?t=u_yGkwAMtOMYY1j4sjmbOg&s=35"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/um_e_sh____?igsh=MXY2cGt5MWY1bmcwNQ=="><i class="fa-brands fa-square-instagram"></i></a>
+            </div>
+            <div class="magneticbtn">
+                <a href="mailto:umeshudayan003@gmail.com?subject=FromPortfolio&body=Hello%20there" class="btn">
+                    <span>CONNECT</span>
+                    <div class="hovercolor"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!----------------------------------------------------------->
+
+    <section class="about" id="about">
+        <div class="about-text">
+        <h2>About<span>Me</span></h2>
+            <p>Passionate Cybersecurity Analyst dedicated to protecting sensitive data and defending against
+                evolving cyber threats. Skilled in proactive threat detection, incident response, and network
+                security, with a strong commitment to staying ahead of emerging risks. Driven by the challenge of
+                securing assets and contributing to a safer digital environment.</p>
+        </div>
+    </section>
+
+</body>
+</html>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="magnet.js"></script>
+
